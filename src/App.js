@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-// import About from "./components/About.js";
+import About from "./components/About.js";
 import Alert from "./components/Alert.js";
 import Navbar from "./components/Navbar.js";
 import TextForm from "./components/TextForm.js";
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route,
-// } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 export default function App() {
   const [mode, setMode] = useState("light");
   const [message, setMessage] = useState(null);
@@ -23,15 +23,15 @@ export default function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#04102b";
       showMsg("Dark mode is enabled", "success");
-      document.title = "Text Utils - Dark Mode";
-      setInterval(() => { document.title = "Download Text Utils now" }, 200);
-      setInterval(() => { document.title = "Text Utils is Best🅱️❤️" }, 300);
+      // document.title = "Text Utils - Dark Mode";
+      // setInterval(() => { document.title = "Download Text Utils now" }, 200);
+      // setInterval(() => { document.title = "Text Utils is Best🅱️❤️" }, 300);
     }
     else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showMsg("Dark mode is disabled", "warning");
-      document.title = "Text Utils- Home"
+      //document.title = "Text Utils- Home"
     }
   }
   const [color, setColor] = useState("white");
@@ -41,21 +41,21 @@ export default function App() {
   }
   return (
     <>
-      {/* <BrowserRouter> */}
+      <BrowserRouter>
 
         <Navbar mode={mode} colorHandler={applyBgColor} modeHandler={modeHandler} title=" Text Utils" about="About" />
         <Alert displayMsg={message} />
-{/* 
+
         <Routes>
-          <Route exact path="/About" element={<About />}></Route>
-          <Route exact path="/" element={ */}
-          <div className="container my-1">
-            <TextForm color={color} displayMsg={showMsg} mode={mode} heading="Enter the text to analyze below " />
-          </div>
-        {/* }></Route>
+          <Route exact path="/About" element={<About mode={mode} />}></Route>
+          <Route exact path="/" element={
+            <div className="container my-1">
+              <TextForm color={color} displayMsg={showMsg} mode={mode} heading="Try TextUtils - Word Counter, Character Counter, Extra Space Remover, Text Copier " />
+            </div>
+          }></Route>
         </Routes>
 
-      </BrowserRouter> */}
+      </BrowserRouter>
     </>
   )
 }

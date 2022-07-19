@@ -32,21 +32,19 @@ export default function TextForm(props) {
 
     return (
         <div style={{ color: props.mode === 'light' ? 'black' : 'white' }} >
-            <h2>{props.heading}  </h2>
+            <h3>{props.heading}  </h3>
             <div className="mb-3">
                 <textarea style={{ color: props.mode === 'light' ? 'black' : 'white', backgroundColor: props.mode === 'dark' ? 'rgb(64 66 88)' : 'white' }} className={`form-control `} onChange={handleOnChange} value={text} id="myBox" rows="8"></textarea>
             </div>
-            <button style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" value="" onClick={handleUpClick} >Convert to Uppercase</button>
-            <button style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleLoClick} > Convert to LowerCase </button>
-            <button style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
-            <button style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleCopyClick}>Copy Text</button>
-            <button style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleRemoveClick}>Remove Extra Spaces</button>
-            <h2 style={{ textDecoration: "underline", marginLeft: "40%" }} className="my-2">Text Summary</h2>
-            <h4 style={{ float: "left" }} >Word Count : {text.split(" ").filter((ele) => { return ele.length !== 0 }).length} </h4>
-            <h4 style={{ float: "right" }}> &nbsp;Character Count : {text.length}</h4>
-            <h4 style={{ textAlign: "center" }}> Minutes Read: {0.008 * text.split(" ").filter((ele) => { return ele.length != 0 }).length}</h4>
-            <h4 style={{ textDecoration: "underline", marginLeft: "10px" }}  >Preview :-  </h4>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{text.length === 0 ? "Enter your text in above box to preview it here" : text}</p>
+            <button disabled={text.length===0} style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" value="" onClick={handleUpClick} >Convert to Uppercase</button>
+            <button disabled={text.length===0} style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleLoClick} > Convert to LowerCase </button>
+            <button disabled={text.length===0} style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleClearClick}>Clear Text</button>
+            <button disabled={text.length===0} style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleCopyClick}>Copy Text</button>
+            <button disabled={text.length===0} style={{ backgroundColor: props.color, color: props.mode !== props.color ? "black" : props.color, border: "2px solid black" }} className="btn btn-primary mx-2 my-1" onClick={handleRemoveClick}>Remove Extra Spaces</button>
+            <h4 style={{ textDecoration: "underline", marginLeft: "40%" }} className="my-2">Text Summary</h4>
+            <h5 > {text.split(/\s+/).filter((ele) => { return ele.length !== 0 }).length} Words   and   {text.length}  Characters   <br /> {0.008 * text.split(/\s+/).filter((ele) => { return ele.length !== 0 }).length}       Minutes Read </h5>
+            <h5 style={{ textDecoration: "underline", marginLeft: "10px" }}  >Preview :-  </h5>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{text.length === 0 ? "Nothing to preview here" : text}</p>
 
         </div>
     )
